@@ -9,9 +9,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "cors": "^2.8.4",
-    "body-parser": "~1.4.2",
-    "serve-favicon": "*",
-    "errorHandler":"*"
+    "body-parser": "~1.4.2"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"

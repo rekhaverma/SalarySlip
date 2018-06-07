@@ -36,11 +36,11 @@ class PaySlipView extends Component {
             </tr>
             <tr>
               <td>{salarySlip.Name}</td>
-              <td>{salarySlip.grossIncome}</td>
-              <td>{salarySlip.netIncome}</td>
               <td>{salarySlip.payPeriod}</td>
-              <td>{salarySlip.superIncome}</td>
+              <td>{salarySlip.grossIncome}</td>
               <td>{salarySlip.taxAmount}</td>
+              <td>{salarySlip.netIncome}</td>
+              <td>{salarySlip.superIncome}</td>
             </tr>
           </table>
         </div>
