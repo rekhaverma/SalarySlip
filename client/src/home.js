@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import "./App.css";
+import config from "./settings.json";
+import isEmpty from "lodash/isEmpty";
+import PaySlipView from "./viewPaySlip";
 
 class Home extends Component {
+  state = {
+    salaryData: {}
+  }
   onSubmit = event => {
     event.preventDefault();
-    console.log("this----------->", this.firstName.value);
-    fetch("http://localhost:8080/getSalarySlip", {
+    fetch(config.url + "getSalarySlip", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -21,15 +25,13 @@ class Home extends Component {
     })
       .then(value => value.json())
       .then(res => {
-        localStorage.setItem("pageData", JSON.stringify(res));
-        const windowRef = window.open("viewPaySlip", "_blank");
-        windowRef.focus();
-        windowRef.onfocus = function() {
-          return;
-        };
+        this.setState({
+          salaryData: res && res.salarySlip
+        });
       });
   };
   render() {
+    const { salaryData } = this.state;
     return (
       <div className="">
         <form onSubmit={this.onSubmit}>
@@ -80,6 +82,9 @@ class Home extends Component {
           </fieldset>
           <button type="submit">Submit</button>
         </form>
+        {salaryData && !isEmpty(salaryData) &&
+          <PaySlipView salaryData={salaryData}/>
+        }
       </div>
     );
   }
