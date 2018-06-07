@@ -1,0 +1,27 @@
+{
+  "taxChunkOne": {
+    "fixedTax": 0,
+    "interestRate": 0,
+    "amtWithoutTax": 0
+  },
+  "taxChunkTwo": {
+    "fixedTax": 0,
+    "interestRate": 0.19,
+    "amtWithoutTax": 18200
+  },
+  "taxChunkThree": {
+    "fixedTax": 3572,
+    "interestRate": 0.325,
+    "amtWithoutTax": 37000
+  },
+  "taxChunkFour": {
+    "fixedTax": 19822,
+    "interestRate": 0.37,
+    "amtWithoutTax": 87000
+  },
+  "taxChunkFive": {
+    "fixedTax": 54232,
+    "interestRate": 0.45,
+    "amtWithoutTax": 180000
+  }
+}
