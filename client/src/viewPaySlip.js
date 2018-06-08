@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
 class PaySlipView extends Component {
-
   render() {
     const { salaryData } = this.props;
-      return (
-        <div>
-          <h1>Salary Slip</h1>
-          <table style={{ width: "100%" }} id="SalarySlip">
+    return (
+      <div>
+        <h1>Salary Slip</h1>
+        <table style={{ width: "100%" }} id="SalarySlip">
+          <tbody>
             <tr>
               <th>name</th>
               <th>pay-period</th>
@@ -24,9 +24,10 @@ class PaySlipView extends Component {
               <td>{salaryData.netIncome}</td>
               <td>{salaryData.superIncome}</td>
             </tr>
-          </table>
-        </div>
-      );
+          </tbody>
+        </table>
+      </div>
+    );
   }
 }
 

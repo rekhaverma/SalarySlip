@@ -1,34 +1,26 @@
 import React, { Component } from "react";
-import config from "./settings.json";
 import isEmpty from "lodash/isEmpty";
 import PaySlipView from "./viewPaySlip";
+import { post } from "./api.js";
 
 class Home extends Component {
   state = {
     salaryData: {}
-  }
+  };
   onSubmit = event => {
     event.preventDefault();
-    fetch(config.url + "getSalarySlip", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        firstName: this.firstName.value,
-        lastName: this.lastName.value,
-        annualSalary: this.annualSalary.value,
-        superRate: this.superRate.value,
-        payStartDate: this.payStartDate.value
-      })
-    })
-      .then(value => value.json())
-      .then(res => {
-        this.setState({
-          salaryData: res && res.salarySlip
-        });
+    let payload = {
+      firstName: this.firstName.value,
+      lastName: this.lastName.value,
+      annualSalary: this.annualSalary.value,
+      superRate: this.superRate.value,
+      payStartDate: this.payStartDate.value
+    };
+    post("/getSalarySlip", payload).then(res => {
+      this.setState({
+        salaryData: res && res.salarySlip
       });
+    });
   };
   render() {
     const { salaryData } = this.state;
@@ -37,7 +29,7 @@ class Home extends Component {
         <form onSubmit={this.onSubmit}>
           <h1>Salary Generator</h1>
           <fieldset>
-            <label for="firstName">First Name:</label>
+            <label htmlFor="firstName">First Name:</label>
             <input
               type="text"
               id="firstName"
@@ -46,7 +38,7 @@ class Home extends Component {
               required
             />
 
-            <label for="lastName">Last Name:</label>
+            <label htmlFor="lastName">Last Name:</label>
             <input
               type="text"
               ref={ref => (this.lastName = ref)}
@@ -55,7 +47,7 @@ class Home extends Component {
               required
             />
 
-            <label for="annualSalary">Annual Salary:</label>
+            <label htmlFor="annualSalary">Annual Salary:</label>
             <input
               type="number"
               ref={ref => (this.annualSalary = ref)}
@@ -63,7 +55,7 @@ class Home extends Component {
               name="annualSalary"
               required
             />
-            <label for="superRate">Super rate:</label>
+            <label htmlFor="superRate">Super rate:</label>
             <input
               type="number"
               ref={ref => (this.superRate = ref)}
@@ -71,7 +63,7 @@ class Home extends Component {
               name="superRate"
               required
             />
-            <label for="password">Pay start date:</label>
+            <label htmlFor="password">Pay start date:</label>
             <input
               type="date"
               ref={ref => (this.payStartDate = ref)}
@@ -82,9 +74,8 @@ class Home extends Component {
           </fieldset>
           <button type="submit">Submit</button>
         </form>
-        {salaryData && !isEmpty(salaryData) &&
-          <PaySlipView salaryData={salaryData}/>
-        }
+        {salaryData &&
+          !isEmpty(salaryData) && <PaySlipView salaryData={salaryData} />}
       </div>
     );
   }

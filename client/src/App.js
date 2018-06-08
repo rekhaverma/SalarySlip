@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Home from "./home.js";
-import PaySlipView from "./viewPaySlip.js";
 import { Router, Route, browserHistory } from "react-router";
 
 class App extends Component {
