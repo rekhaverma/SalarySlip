@@ -12,6 +12,13 @@ Instructions to run this App.
 7. Now client and server will be running in two diffrent tabs.
 
 
+## Testing
+
+For testing you need to go to directory `testing/jsCalc/`.
+and open `specRunner.html` in browser.
+For testing with any input and output you need to provide values for input and output in `src/calculator.js`
+
+
 
 <!-- Readme provided by Create react App -->
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
